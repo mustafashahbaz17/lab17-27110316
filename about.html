@@ -147,15 +147,10 @@
 
     .photo-placeholder {
       min-height: 420px;
-      display: grid;
-      place-items: center;
       border: 1px solid var(--border);
-      background:
-        linear-gradient(135deg, transparent 49.7%, var(--border) 49.8%, var(--border) 50.2%, transparent 50.3%),
-        var(--surface);
-      color: var(--muted);
-      text-align: center;
-      padding: 24px;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
 
     .about-copy {
@@ -292,9 +287,7 @@
 
     <section class="section" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div class="photo-placeholder" role="img" aria-label="Photography placeholder for replacement">
-          Studio photography placeholder<br>for replacement
-        </div>
+        <img class="photo-placeholder" src="images/studio.jpg" alt="Apex Detail Studio detailing workspace">
         <div class="about-copy">
           <h2 id="about-title">Measured workmanship.</h2>
           <p>Every vehicle presents a different surface condition, interior layout and protection requirement. We inspect the starting point, define the scope and follow a controlled process from preparation to finish.</p>
