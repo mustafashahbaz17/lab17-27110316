@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0B">
+  <title>Apex Detail Studio | Perfection, Polished.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #0A0A0B;
+      --surface: #141416;
+      --text: #F5F5F2;
+      --muted: #9A9A9F;
+      --accent: #C8A25E;
+      --border: #2A2A2E;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .brand-name {
+      margin-top: 0;
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.02em;
+    }
+
+    h1, h2 {
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    h1 { font-size: clamp(3rem, 8vw, 6.75rem); }
+    h2 { font-size: clamp(2.25rem, 5vw, 4rem); }
+    h3 { font-size: 1.35rem; }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 11, 0.96);
+    }
+
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 5px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.9rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible { color: var(--accent); }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--accent);
+      border-radius: 2px;
+      background: var(--accent);
+      color: #111;
+      padding: 12px 22px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      background: #D7B66F;
+    }
+
+    .hero {
+      min-height: calc(100vh - 84px);
+      display: grid;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 48px;
+      padding-block: 64px;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .text-link {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .photo-placeholder {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, transparent 49.7%, var(--border) 49.8%, var(--border) 50.2%, transparent 50.3%),
+        var(--surface);
+      color: var(--muted);
+      text-align: center;
+      padding: 24px;
+    }
+
+    section { scroll-margin-top: 84px; }
+
+    .section {
+      padding-block: 96px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 { margin-bottom: 0; }
+
+    .section-heading p {
+      max-width: 420px;
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 960px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .service-card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 28px;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+    }
+
+    .service-card h3 { margin-bottom: 10px; }
+
+    .service-category-label {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .price {
+      margin-top: 24px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      align-items: stretch;
+    }
+
+    .about-grid .photo-placeholder { min-height: 420px; }
+
+    .about-copy {
+      border: 1px solid var(--border);
+      padding: 48px;
+    }
+
+    .about-copy h2 { margin-bottom: 24px; }
+
+    .about-copy p {
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 48px;
+    }
+
+    .booking-intro p { color: var(--muted); }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label { font-size: 0.9rem; }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      padding: 10px 12px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 1px solid var(--accent);
+      border-color: var(--accent);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .error {
+      min-height: 20px;
+      color: #E5B4B4;
+      font-size: 0.85rem;
+    }
+
+    .site-footer {
+      background: #070708;
+      padding-block: 56px 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, 0.8fr);
+      gap: 32px;
+      padding-bottom: 42px;
+    }
+
+    .footer-brand .tagline { display: block; }
+
+    .footer-heading {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      margin-bottom: 12px;
+    }
+
+    .footer-grid p {
+      margin: 4px 0;
+    }
+
+    .footer-grid a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .copyright {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 800px) {
+      .container { width: min(100% - 32px, 1180px); }
+      .header-inner { min-height: 76px; }
+      .nav { gap: 14px; }
+      .nav a:not(.button) { display: none; }
+      .nav .button { padding-inline: 14px; }
+      .hero { min-height: auto; }
+      .hero-grid, .about-grid, .booking-grid { grid-template-columns: 1fr; }
+      .hero-grid { padding-block: 48px; }
+      .photo-placeholder { min-height: 360px; }
+      .section { padding-block: 72px; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .cards, .protection .cards { grid-template-columns: 1fr; }
+      .about-copy { padding: 32px 24px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: calc(100% - 28px); }
+      .brand-name { font-size: 0.95rem; }
+      .tagline { font-size: 0.68rem; }
+      .nav .button { min-height: 44px; font-size: 0.78rem; }
+      h1 { font-size: 3.2rem; }
+      h2 { font-size: 2.35rem; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .text-link { padding: 8px 0; }
+      .photo-placeholder { min-height: 300px; }
+      form { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top" aria-label="Apex Detail Studio home">
+        <span class="brand-name">Apex Detail Studio</span>
+        <span class="tagline">Perfection, Polished.</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="about.html">About</a>
+        <a class="button" href="#booking">Book a Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <h1 id="hero-title">Perfection,<br>Polished.</h1>
+          <p class="hero-copy">Precision detailing for vehicles that deserve uncompromising care. Apex Detail Studio serves Lahore with focused workmanship and exact finishes.</p>
+          <div class="hero-actions">
+            <a class="button" href="#booking">Book a Consultation</a>
+            <a class="text-link" href="#services">Explore services</a>
+          </div>
+        </div>
+        <div class="photo-placeholder" role="img" aria-label="Photography placeholder for replacement">
+          Photography placeholder<br>for replacement
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading">
+          <h2 id="services-title">Services</h2>
+          <p>Purposeful treatments for every visible surface, from exterior finish to cabin detail.</p>
+        </div>
+
+        <div class="cards">
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Exterior</span>
+              <span class="service-icon" aria-hidden="true">EW</span>
+              <h3>Exterior Wash</h3>
+              <p>A controlled hand wash that restores clarity without stressing the finish.</p>
+            </div>
+            <div class="price">from PKR 4,500</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Exterior</span>
+              <span class="service-icon" aria-hidden="true">PE</span>
+              <h3>Paint Enhancement</h3>
+              <p>Refinement of light defects for a cleaner, deeper reflection.</p>
+            </div>
+            <div class="price">from PKR 25,000</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Exterior</span>
+              <span class="service-icon" aria-hidden="true">WT</span>
+              <h3>Wheel and Tire</h3>
+              <p>Detailed cleaning, decontamination and a precise tire finish.</p>
+            </div>
+            <div class="price">from PKR 8,000</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Interior</span>
+              <span class="service-icon" aria-hidden="true">IR</span>
+              <h3>Interior Reset</h3>
+              <p>A complete cabin clean covering seats, trim, carpets and surfaces.</p>
+            </div>
+            <div class="price">from PKR 12,000</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Interior</span>
+              <span class="service-icon" aria-hidden="true">LC</span>
+              <h3>Leather Care</h3>
+              <p>Gentle cleaning and conditioning selected for the hide finish.</p>
+            </div>
+            <div class="price">from PKR 18,000</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Interior</span>
+              <span class="service-icon" aria-hidden="true">OT</span>
+              <h3>Odor Treatment</h3>
+              <p>Targeted interior treatment for persistent unwanted odors.</p>
+            </div>
+            <div class="price">from PKR 9,500</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Protection</span>
+              <span class="service-icon" aria-hidden="true">CC</span>
+              <h3>Ceramic Coating</h3>
+              <p>Durable surface protection engineered for gloss and easier upkeep.</p>
+            </div>
+            <div class="price">from PKR 45,000</div>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-category-label">Protection</span>
+              <span class="service-icon" aria-hidden="true">PF</span>
+              <h3>Paint Protection Film</h3>
+              <p>Clear impact protection applied to selected panels or full vehicles.</p>
+            </div>
+            <div class="price">from PKR 85,000</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="photo-placeholder" role="img" aria-label="Photography placeholder for replacement">
+          Studio photography placeholder<br>for replacement
+        </div>
+        <div class="about-copy">
+          <h2 id="about-title">Detail with intention.</h2>
+          <p>Apex Detail Studio in Lahore approaches every vehicle as a complete surface system. Preparation is deliberate. Products are selected for compatibility. Each stage is inspected before the next begins.</p>
+          <p>The result is not a single dramatic moment. It is a consistent, measured finish designed to hold up in daily use.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking" aria-labelledby="booking-title">
+      <div class="container booking-grid">
+        <div class="booking-intro">
+          <h2 id="booking-title">Book a Consultation</h2>
+          <p>Share the vehicle details and preferred appointment. Our team will confirm availability and scope.</p>
+        </div>
+        <form id="booking-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="03001234567" required>
+            <span class="error" id="phone-error" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="vehicle">Vehicle</label>
+            <input id="vehicle" name="vehicle" type="text" placeholder="Make and model" required>
+          </div>
+          <div class="field">
+            <label for="service">Service</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option>Exterior Wash</option>
+              <option>Paint Enhancement</option>
+              <option>Wheel and Tire</option>
+              <option>Interior Reset</option>
+              <option>Leather Care</option>
+              <option>Odor Treatment</option>
+              <option>Ceramic Coating</option>
+              <option>Paint Protection Film</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="time">Time</label>
+            <input id="time" name="time" type="time" required>
+          </div>
+          <div class="field full">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" placeholder="Vehicle condition or specific concerns"></textarea>
+          </div>
+          <div class="field full">
+            <button class="button" type="submit">Submit Consultation Request</button>
+            <span class="error" id="form-status" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">Apex Detail Studio</div>
+          <span class="tagline">Perfection, Polished.</span>
+        </div>
+        <div>
+          <div class="footer-heading">Address</div>
+          <p>Lahore, Pakistan</p>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <p><a href="tel:+923001234567">+92 300 1234567</a></p>
+          <p><a href="https://wa.me/923001234567" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <div class="footer-heading">Opening hours</div>
+          <p>Monday to Saturday</p>
+          <p>10:00 am to 7:00 pm</p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 Apex Detail Studio</div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("booking-form");
+    const phone = document.getElementById("phone");
+    const phoneError = document.getElementById("phone-error");
+    const formStatus = document.getElementById("form-status");
+
+    function getPhoneDigitCount(value) {
+      return (value.match(/\d/g) || []).length;
+    }
+
+    phone.addEventListener("input", () => {
+      if (getPhoneDigitCount(phone.value) === 11) {
+        phoneError.textContent = "";
+        phone.setAttribute("aria-invalid", "false");
+      }
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (getPhoneDigitCount(phone.value) !== 11) {
+        phoneError.textContent = "Enter a phone number with 11 digits.";
+        phone.setAttribute("aria-invalid", "true");
+        phone.focus();
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        formStatus.textContent = "Complete all required fields.";
+        form.reportValidity();
+        return;
+      }
+
+      phoneError.textContent = "";
+      phone.setAttribute("aria-invalid", "false");
+      formStatus.textContent = "Consultation request ready.";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0B">
+  <title>About | Apex Detail Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #0A0A0B;
+      --surface: #141416;
+      --text: #F5F5F2;
+      --muted: #9A9A9F;
+      --accent: #C8A25E;
+      --border: #2A2A2E;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .brand-name {
+      margin-top: 0;
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.02em;
+    }
+
+    h1, h2 {
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    h1 { font-size: clamp(3rem, 8vw, 6.75rem); }
+    h2 { font-size: clamp(2.25rem, 5vw, 4rem); }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 11, 0.96);
+    }
+
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 5px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.9rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible { color: var(--accent); }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--accent);
+      border-radius: 2px;
+      background: var(--accent);
+      color: #111;
+      padding: 12px 22px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .button:hover,
+    .button:focus-visible { background: #D7B66F; }
+
+    .page-hero {
+      min-height: 430px;
+      display: grid;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-hero h1 {
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+
+    .page-hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .section {
+      padding-block: 96px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      align-items: stretch;
+    }
+
+    .photo-placeholder {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, transparent 49.7%, var(--border) 49.8%, var(--border) 50.2%, transparent 50.3%),
+        var(--surface);
+      color: var(--muted);
+      text-align: center;
+      padding: 24px;
+    }
+
+    .about-copy {
+      border: 1px solid var(--border);
+      padding: 48px;
+    }
+
+    .about-copy h2 { margin-bottom: 24px; }
+
+    .about-copy p {
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .principle {
+      min-height: 220px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 28px;
+    }
+
+    .principle h3 {
+      font-size: 1.35rem;
+    }
+
+    .principle p {
+      color: var(--muted);
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .cta h2 {
+      max-width: 720px;
+      margin-bottom: 0;
+    }
+
+    .site-footer {
+      background: #070708;
+      padding-block: 56px 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, 0.8fr);
+      gap: 32px;
+      padding-bottom: 42px;
+    }
+
+    .footer-heading {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      margin-bottom: 12px;
+    }
+
+    .footer-grid p {
+      margin: 4px 0;
+    }
+
+    .footer-grid a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .copyright {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 800px) {
+      .container { width: min(100% - 32px, 1180px); }
+      .header-inner { min-height: 76px; }
+      .nav { gap: 14px; }
+      .nav a:not(.button) { display: none; }
+      .nav .button { padding-inline: 14px; }
+      .page-hero { min-height: 360px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .section { padding-block: 72px; }
+      .principles { grid-template-columns: 1fr; }
+      .about-copy { padding: 32px 24px; }
+      .cta { align-items: flex-start; flex-direction: column; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: calc(100% - 28px); }
+      .brand-name { font-size: 0.95rem; }
+      .tagline { font-size: 0.68rem; }
+      .nav .button { min-height: 44px; font-size: 0.78rem; }
+      h1 { font-size: 3.2rem; }
+      h2 { font-size: 2.35rem; }
+      .photo-placeholder { min-height: 300px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Apex Detail Studio home">
+        <span class="brand-name">Apex Detail Studio</span>
+        <span class="tagline">Perfection, Polished.</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a class="button" href="index.html#booking">Book a Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title">Detail with intention.</h1>
+        <p>Apex Detail Studio in Lahore is built around precise preparation, considered products and finishes that hold their standard.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="photo-placeholder" role="img" aria-label="Photography placeholder for replacement">
+          Studio photography placeholder<br>for replacement
+        </div>
+        <div class="about-copy">
+          <h2 id="about-title">Measured workmanship.</h2>
+          <p>Every vehicle presents a different surface condition, interior layout and protection requirement. We inspect the starting point, define the scope and follow a controlled process from preparation to finish.</p>
+          <p>The objective remains consistent: clean lines, balanced gloss and careful treatment of the materials in front of us.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="principles-title">
+      <div class="container">
+        <h2 id="principles-title" style="margin-bottom: 42px;">Our standards</h2>
+        <div class="principles">
+          <article class="principle">
+            <h3>Preparation first</h3>
+            <p>Decontamination and inspection establish the correct starting point before correction begins.</p>
+          </article>
+          <article class="principle">
+            <h3>Material aware</h3>
+            <p>Paint, leather, fabric and trim receive care suited to their individual construction.</p>
+          </article>
+          <article class="principle">
+            <h3>Finish focused</h3>
+            <p>Each stage is checked for consistency, clarity and careful workmanship.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cta">
+        <h2>Discuss your vehicle with the studio.</h2>
+        <a class="button" href="index.html#booking">Book a Consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-name">Apex Detail Studio</div>
+          <span class="tagline">Perfection, Polished.</span>
+        </div>
+        <div>
+          <div class="footer-heading">Address</div>
+          <p>Lahore, Pakistan</p>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <p><a href="tel:+923001234567">+92 300 1234567</a></p>
+          <p><a href="https://wa.me/923001234567" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <div class="footer-heading">Opening hours</div>
+          <p>Monday to Saturday</p>
+          <p>10:00 am to 7:00 pm</p>
+        </div>
+      </div>
+      <div class="copyright">© 2026 Apex Detail Studio</div>
+    </div>
+  </footer>
+</body>
+</html>
